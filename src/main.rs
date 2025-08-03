@@ -1,4 +1,4 @@
-use consensus_engine::{Command, LogEntry, ConsensusState};
+use consensus_engine::{Command, ConsensusState, LogEntry};
 
 fn main() {
     let mut state = ConsensusState::new();
@@ -11,4 +11,3 @@ fn main() {
     println!("Voted for: {:?}", state.voted_for);
     println!("Log: {:#?}", state.log);
 }
-

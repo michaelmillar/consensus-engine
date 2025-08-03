@@ -1,7 +1,7 @@
 #![allow(dead_code)]
 
+use rand::{Rng, rng};
 use std::time::Duration;
-use rand::{rng, Rng};
 
 #[derive(Clone, Debug)]
 pub struct LogEntry {
@@ -13,7 +13,7 @@ pub struct LogEntry {
 pub enum Command {
     NoOp,
     Set(String, String),
-    Delete(String)
+    Delete(String),
 }
 
 #[derive(Debug)]
@@ -22,14 +22,14 @@ pub struct ConsensusState {
     pub voted_for: Option<String>,
     pub last_applied: u64,
     pub log: Vec<LogEntry>,
-    pub commit_index: u64
+    pub commit_index: u64,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum Role {
     Follower,
     Candidate,
-    Leader
+    Leader,
 }
 
 #[derive(Debug)]
@@ -59,9 +59,13 @@ impl ConsensusState {
         }
     }
 
-    pub fn append_entry(&mut self, term:u64, command: Command) {
-        self.log.push(LogEntry {term , command});
+    pub fn append_entry(&mut self, term: u64, command: Command) {
+        self.log.push(LogEntry { term, command });
     }
 }
 
-
+impl Default for ConsensusState {
+    fn default() -> Self {
+        Self::new()
+    }
+}

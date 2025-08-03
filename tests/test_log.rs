@@ -1,5 +1,4 @@
-use consensus_engine::{ConsensusState, Command, LogEntry};
-
+use consensus_engine::{Command, ConsensusState, LogEntry};
 
 #[cfg(test)]
 mod tests {
@@ -26,7 +25,7 @@ mod tests {
                 assert_eq!(key, "key 1");
                 assert_eq!(value, "val 1");
             }
-            _ => panic!("Expected Set command"), 
+            _ => panic!("Expected Set command"),
         }
     }
 }
