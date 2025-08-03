@@ -1,5 +1,8 @@
 #![allow(dead_code)]
 
+use std::time::Duration;
+use rand::{rng, Rng};
+
 #[derive(Clone, Debug)]
 pub struct LogEntry {
     pub term: u64,
@@ -22,6 +25,29 @@ pub struct ConsensusState {
     pub commit_index: u64
 }
 
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub enum Role {
+    Follower,
+    Candidate,
+    Leader
+}
+
+#[derive(Debug)]
+pub enum ConsensusEvent {
+    ElectionTimeout,
+    HeartbeatTimeout,
+    ReceiveAppendEntries,
+    ReceiveVoteGranted,
+    ReceiveVoteRejected,
+}
+
+pub fn random_election_timeout() -> Duration {
+    let millis = rng().random_range(150..=300);
+    Duration::from_millis(millis)
+}
+
+pub const HEARTBEAT_INTERVAL: Duration = Duration::from_millis(50);
+
 impl ConsensusState {
     pub fn new() -> Self {
         Self {
@@ -37,3 +63,5 @@ impl ConsensusState {
         self.log.push(LogEntry {term , command});
     }
 }
+
+

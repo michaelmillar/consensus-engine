@@ -1,1 +1,2 @@
-Roll your own consensus engine
+# Consensus Engine
+

@@ -5,7 +5,6 @@ use consensus_engine::{ConsensusState, Command, LogEntry};
 mod tests {
     use super::*;
 
-
     #[test]
     fn test_log_append() {
         let mut state = ConsensusState::new();
@@ -13,7 +12,6 @@ mod tests {
         assert_eq!(state.log.len(), 1);
         assert!(matches!(state.log[0].command, Command::Set(_, _)));
     }
-}
 
     #[test]
     fn test_log_entry_creation() {
@@ -31,3 +29,4 @@ mod tests {
             _ => panic!("Expected Set command"), 
         }
     }
+}
