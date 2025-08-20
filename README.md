@@ -2,7 +2,10 @@
 
 ## Logic WIP
 - [ ] Event Loop 
-    - [ ] Roles: Follower, Candidate, Leader
+    - [ ] Roles
+      - [x] Follower
+      - [ ] Candidate
+      - [ ] Leader
   - [ ] Timers
     - [ ] Election timeout
     - [ ] Heartbeat interval
